@@ -33,7 +33,7 @@ public class GameViewConsole implements GameView {
         Scanner scanner = Main.getScanner();
 
         System.out.println("Map - to view map");
-        System.out.println("North, East, South, West - to move to this direction");
+        System.out.println("North, East, South, West - to move to that direction");
         //System.out.println("Switch - to switch to GUI view");
         while (scanner.hasNext()) {
             String input = scanner.nextLine();

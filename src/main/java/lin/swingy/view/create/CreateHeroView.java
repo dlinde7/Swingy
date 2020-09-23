@@ -6,4 +6,6 @@ public interface CreateHeroView {
     void getUserInput();
     void showErrorMessage(String message);
     void openGame();
+    void openCreateHero();
+    void openSelectHero();
 }

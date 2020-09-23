@@ -33,4 +33,12 @@ public class CreateHeroController {
         game.initGame(hero);
         view.openGame();
     }
+
+    public void onSelectButtonPressed() {
+        view.openSelectHero();
+    }
+
+    public void onRedoButtonPressed() {
+        view.openCreateHero();
+    }
 }

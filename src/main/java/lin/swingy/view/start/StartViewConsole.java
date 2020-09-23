@@ -20,7 +20,6 @@ public class StartViewConsole implements StartView {
         System.out.println("Create - to create hero");
         System.out.println("Select - to select already created hero");
        // System.out.println();
-       System.out.println();
        while (scanner.hasNext()) {
         String input = scanner.nextLine();
 

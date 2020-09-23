@@ -1,5 +1,6 @@
 package lin.swingy.controller;
 
+import lin.swingy.exception.HeroValidationException;
 import lin.swingy.model.Game;
 import lin.swingy.model.artifact.Armor;
 import lin.swingy.model.artifact.Artifact;
@@ -10,18 +11,22 @@ import lin.swingy.model.character.Villain;
 import lin.swingy.data.DataBase;
 import lin.swingy.data.Point;
 import lin.swingy.view.game.GameView;
+import lin.swingy.view.select.SelectHeroView;
 
 import java.util.Random;
 
 public class GameController {
 
+    private Hero hero;
     private GameView view;
     private Game game;
+    private Game con;
     private Point previousPosition;
 
     public GameController(GameView view) {
         this.view = view;
         game = Game.getInstance();
+        con = Game.getInstance();
         previousPosition = new Point(0, 0);
     }
 
@@ -136,7 +141,9 @@ public class GameController {
 
     private void addExperience(int addXP) {
         int level = game.getHero().getLevel();
-        game.getHero().addExperience(addXP);
+        if (level < 10){
+           game.getHero().addExperience(addXP); 
+        }
         if (level != game.getHero().getLevel())
             view.showMessage("Level UP!\nHP, attack and defense were increased!");
     }

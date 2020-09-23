@@ -17,6 +17,13 @@ public class Main {
         }
 
             DataBase.connect();
+            if (DataBase.isEmpty()) {
+                DataBase.insert("Wolf", "Ranger", 3, 3400, 70, 50, 185);
+                DataBase.insert("Raven", "Shaman", 2, 1654, 85, 50, 110);
+                DataBase.insert("Steven", "Paladin", 4, 5628, 50, 110, 200);
+                DataBase.insert("Bolgen", "Mage", 1, 576, 75, 25, 90);
+                DataBase.insert("John", "Priest", 1, 576, 40, 40, 120);
+            }
 
             if (args[0].equals("console")){
                 new StartViewConsole().start();

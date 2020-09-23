@@ -49,7 +49,7 @@ public class Game {
 
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
-                rand = ThreadLocalRandom.current().nextInt(0, 101);
+                rand = ThreadLocalRandom.current().nextInt(0, 111);
                 if ((level + 1) * 10 >= rand)
                     map[i][j] = true;
             }
@@ -70,7 +70,12 @@ public class Game {
     }
 
     private Artifact generateArtifact() {
-        int rand = ThreadLocalRandom.current().nextInt(0, 10);
+        int rand;
+        if (hero.getArmor() == null && hero.getHelm() == null && hero.getWeapon() == null) {
+            rand = ThreadLocalRandom.current().nextInt(0, 4);
+        } else {
+            rand = ThreadLocalRandom.current().nextInt(0, 8);
+        }
 
         Artifact artifact = null;
         if (rand == 0) {
@@ -123,12 +128,26 @@ public class Game {
         int xp = villain.getAttack() + villain.getDefense() + villain.getHitPoints();
         int rand = ThreadLocalRandom.current().nextInt(0, 101);
 
-        if (rand < 3)
-            return xp;
-        else if (rand > 98)
+        if (rand < 3){
+            if (hero.getLevel() < 10){
+                return xp;
+            } else {
+                return 0;
+            }
+        } else if (rand > 98){
             return -1;
+        }
 
-        return hero.fight(villain) ? xp : -1;
+        if (hero.fight(villain)){
+            if (hero.getLevel() < 10){
+                return xp;
+            } else {
+                return 0;
+            }
+        } else {
+            return -1;
+        }
+    
     }
 
     private void putHero() {

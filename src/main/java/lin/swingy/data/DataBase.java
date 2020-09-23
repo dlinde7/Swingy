@@ -40,6 +40,24 @@ public class DataBase {
         return connection;
     }
 
+    public static Boolean isEmpty() {
+        String sqlQuery = "SELECT * FROM heroes";
+        try (PreparedStatement pstmt = getConnection().prepareStatement(sqlQuery)) {
+            Statement stmt = getConnection().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM heroes;");
+            rs.next();
+            int count = rs.getInt(1);
+            if (count == 0){
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
     public static int insert(String name, String className, int level, int xp, int attack, int defense, int hp) {
         String sqlQuery = "INSERT INTO heroes(name, class, level, xp, attack, defense, hp) VALUES(?, ?, ?, ?, ?, ?, ?)";
         int id = 0;

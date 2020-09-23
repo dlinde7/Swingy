@@ -2,6 +2,7 @@ package lin.swingy.view.create;
 
 import lin.swingy.Main;
 import lin.swingy.controller.CreateHeroController;
+import lin.swingy.view.select.SelectHeroViewConsole;
 import lin.swingy.view.game.GameViewConsole;
 
 import java.util.Scanner;
@@ -34,12 +35,20 @@ public class CreateHeroViewConsole implements CreateHeroView{
         "Enter class name: ");
         String heroClass = scanner.nextLine();
 
+        System.out.println("Select - to select an existing hero");
+        System.out.println("Redo - to restart create a hero");
         System.out.println("Create - to create hero " + name + " the " + heroClass);
         while (scanner.hasNext()){
             String input = scanner.nextLine();
 
             if ("create".equalsIgnoreCase(input)){
                 controller.onCreateButtonPressed(name, heroClass);
+                break;
+            } else if ("select".equalsIgnoreCase(input)){
+                controller.onSelectButtonPressed();
+                break;
+            } else if ("redo".equalsIgnoreCase(input)){
+                controller.onRedoButtonPressed();
                 break;
             } else {
                 System.out.println("Unknown command");
@@ -55,6 +64,16 @@ public class CreateHeroViewConsole implements CreateHeroView{
     @Override
     public void openGame(){
         new GameViewConsole().start();
+    }
+
+    @Override
+    public void openCreateHero(){
+        new CreateHeroViewConsole().start();
+    }
+
+    @Override
+    public void openSelectHero(){
+        new SelectHeroViewConsole().start();
     }
 
 }
