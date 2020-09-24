@@ -41,6 +41,11 @@ public class StartViewConsole implements StartView {
     }
 
     @Override
+    public void switchView() {
+        new StartViewGUI().start();
+    }
+
+    @Override
     public void openSelectHero() {
         new SelectHeroViewConsole().start();
     }

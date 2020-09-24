@@ -116,7 +116,7 @@ public class Game {
             }else if ("paladin".equalsIgnoreCase(hero.getHeroClass())){
                 artifact = new Armor("Shield", ThreadLocalRandom.current().nextInt(1, 4 * (hero.getLevel() + 1)));
             }else if ("mage".equalsIgnoreCase(hero.getHeroClass())){
-                artifact = new Helm("Robes", ThreadLocalRandom.current().nextInt(1, 2 * (hero.getLevel() + 1)));
+                artifact = new Armor("Robes", ThreadLocalRandom.current().nextInt(1, 2 * (hero.getLevel() + 1)));
             }else if ("ranger".equalsIgnoreCase(hero.getHeroClass())){
                 artifact = new Armor("Bracers", ThreadLocalRandom.current().nextInt(1, 3 * (hero.getLevel() + 1)));
             }

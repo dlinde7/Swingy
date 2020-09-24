@@ -19,45 +19,7 @@ public class GameViewConsole implements GameView {
     }
 
     @Override
-    public void update(Game game) {
-        System.out.println("----------INFO----------");
-        System.out.println(game.getHero().toString() +
-                "Position: " + "(" + game.getHeroCoord().getX() +
-                "," + game.getHeroCoord().getY() + ")");
-        System.out.println("------------------------");
-
-        getUserInput();
-    }
-
-    private void getUserInput() {
-        Scanner scanner = Main.getScanner();
-
-        System.out.println("Map - to view map");
-        System.out.println("North, East, South, West - to move to that direction");
-        //System.out.println("Switch - to switch to GUI view");
-        while (scanner.hasNext()) {
-            String input = scanner.nextLine();
-
-            if ("map".equalsIgnoreCase(input)) {
-                controller.onPrintMap();
-                break;
-            } else if ("north".equalsIgnoreCase(input) ||
-                    "east".equalsIgnoreCase(input) ||
-                    "south".equalsIgnoreCase(input) ||
-                    "west".equalsIgnoreCase(input)) {
-                controller.onMove(input);
-                break;
-            } /*else if ("switch".equalsIgnoreCase(input)) {
-                controller.onSwitchButtonPressed();
-                break;
-            }*/ else {
-                System.out.println("Unknown command");
-            }
-        }
-    }
-
-    @Override
-    public void printMap(boolean[][] map, Point heroCoord) {
+    public void update(Game game, boolean[][] map, Point heroCoord) {
         System.out.printf("MAP %dx%d", map.length, map.length);
         System.out.println();
         for (int i = 0; i < map.length; i++) {
@@ -71,12 +33,42 @@ public class GameViewConsole implements GameView {
             }
             System.out.println();
         }
+        System.out.println("----------INFO----------");
+        System.out.println(game.getHero().toString() +
+                "Position: " + "(" + game.getHeroCoord().getX() +
+                "," + game.getHeroCoord().getY() + ")");
+        System.out.println("------------------------");
+
+        getUserInput();
+    }
+
+    private void getUserInput() {
+        Scanner scanner = Main.getScanner();
+
+        System.out.println("Switch - to switch to GUI view");
+        System.out.println("North, East, South, West - to move to that direction");
+        while (scanner.hasNext()) {
+            String input = scanner.nextLine();
+
+            if ("north".equalsIgnoreCase(input) ||
+                    "east".equalsIgnoreCase(input) ||
+                    "south".equalsIgnoreCase(input) ||
+                    "west".equalsIgnoreCase(input)) {
+                controller.onMove(input);
+                break;
+            } else if ("switch".equalsIgnoreCase(input)) {
+                controller.onSwitchButtonPressed();
+                break;
+            } else {
+                System.out.println("Unknown command");
+            }
+        }
     }
 
     @Override
     public void gameFinished() {
         System.out.println("See you!");
-        //Main.getFrame().dispose();
+        Main.getFrame().dispose();
         Main.closeConnections();
     }
 
@@ -131,8 +123,8 @@ public class GameViewConsole implements GameView {
         return false;
     }
 
-    /*@Override
+    @Override
     public void switchView() {
         new GameViewGUI().start();
-    }*/
+    }
 }

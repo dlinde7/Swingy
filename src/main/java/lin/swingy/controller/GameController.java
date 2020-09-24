@@ -31,12 +31,7 @@ public class GameController {
     }
 
     public void onStart() {
-        view.update(game);
-    }
-
-    public void onPrintMap() {
-        view.printMap(game.getMap(), game.getHeroCoord());
-        view.update(game);
+        view.update(game, game.getMap(), game.getHeroCoord());
     }
 
     public void onMove(String direction) {
@@ -73,7 +68,7 @@ public class GameController {
         }
 
         if (game.getHero().getHitPoints() > 0)
-            view.update(game);
+            view.update(game, game.getMap(), game.getHeroCoord());
     }
 
     private void winGame() {
@@ -148,7 +143,7 @@ public class GameController {
             view.showMessage("Level UP!\nHP, attack and defense were increased!");
     }
 
-    /*public void onSwitchButtonPressed() {
+    public void onSwitchButtonPressed() {
         view.switchView();
-    }*/
+    }
 }

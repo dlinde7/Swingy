@@ -6,11 +6,10 @@ import lin.swingy.data.Point;
 public interface GameView {
 
     void    start();
-    void    printMap(boolean[][] map, Point heroCoord);
-    void    update(Game game);
+    void    update(Game game, boolean[][] map, Point heroCoord);
     void    gameFinished();
     void    showMessage(String message);
     void    getVillainCollisionInput();
     boolean replaceArtifact(String replaceMessage);
-    //void    switchView();
+    void    switchView();
 }
