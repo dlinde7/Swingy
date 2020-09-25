@@ -18,7 +18,9 @@ public class GameViewGUI extends JPanel implements GameView {
     private JButton switchButton = new JButton("Switch to console");
 
     private JEditorPane infoPane = new JEditorPane();
+    private JScrollPane infoScroll = new JScrollPane(infoPane);
     private JEditorPane mapPane = new JEditorPane();
+    private JScrollPane mapScroll = new JScrollPane(mapPane);
 
     private GameController controller;
 
@@ -38,13 +40,6 @@ public class GameViewGUI extends JPanel implements GameView {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-
-        infoPane.setEditable(false);
-        infoPane.setText("Select hero to see information");
-        infoPane.setPreferredSize(new Dimension(700, 550));
-        infoPane.setMinimumSize(new Dimension(500, 400));
-        this.add(infoPane, gbc);
-        gbc.insets = new Insets(2, 2, 2, 2);
 
         directionsComboBox.setSelectedIndex(0);
         this.add(directionsComboBox, gbc);
@@ -92,7 +87,6 @@ public class GameViewGUI extends JPanel implements GameView {
 
         mapPane.setEditable(false);
         mapPane.setText(stringBuilder.toString());
-        JScrollPane mapScroll = new JScrollPane(mapPane);
         mapScroll.setPreferredSize(new Dimension(500, 400));
         mapScroll.setMinimumSize(new Dimension(300, 300));
         this.add(mapScroll, gbc);
@@ -101,14 +95,9 @@ public class GameViewGUI extends JPanel implements GameView {
         infoPane.setText(game.getHero().toString() +
                 "Position: " + "(" + game.getHeroCoord().getX() +
                 "," + game.getHeroCoord().getY() + ")");
-        JScrollPane infoScroll = new JScrollPane(infoPane);
         infoScroll.setPreferredSize(new Dimension(500, 400));
         infoScroll.setMinimumSize(new Dimension(300, 300));
         this.add(infoScroll, gbc);
-
-        /*infoPane.setText(stringBuilder.toString() + game.getHero().toString() +
-                "Position: " + "(" + game.getHeroCoord().getX() +
-                "," + game.getHeroCoord().getY() + ")");*/
     }
 
     @Override

@@ -67,6 +67,7 @@ public class GameController {
             villainCollision();
         }
 
+        game.getMap()[game.getHeroCoord().getY()][game.getHeroCoord().getX()] = false;
         if (game.getHero().getHitPoints() > 0)
             view.update(game, game.getMap(), game.getHeroCoord());
     }

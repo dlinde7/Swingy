@@ -16,6 +16,7 @@ public class CreateHeroViewGUI extends JPanel implements CreateHeroView {
     private JTextField heroNameField = new JTextField(10);
     private JButton createHeroButton = new JButton("Create Hero");
     private JButton selectButton = new JButton("Select");
+    private JButton redoButton = new JButton("Redo");
     private String[] heroClasses = {"Warrior", "Shaman", "Priest", "Paladin", "Mage", "Ranger"};
     private JLabel heroClass = new JLabel("Class:");
     private JComboBox<String> classesComboBox = new JComboBox<>(heroClasses);
@@ -68,6 +69,7 @@ public class CreateHeroViewGUI extends JPanel implements CreateHeroView {
 
         this.add(createHeroButton, gbc);
         this.add(selectButton, gbc);
+        this.add(redoButton, gbc);
         this.setVisible(true);
 
         Main.getFrame().setContentPane(this);
@@ -84,6 +86,12 @@ public class CreateHeroViewGUI extends JPanel implements CreateHeroView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 controller.onSelectButtonPressed();
+            }
+        });
+        redoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.onRedoButtonPressed();
             }
         });
     }
